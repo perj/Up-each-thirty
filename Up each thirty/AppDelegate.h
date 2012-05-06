@@ -16,12 +16,17 @@
 	NSDate *nextStandup;
 	NSTimeInterval updateInterval;
 	NSTimer *ticker;
+	
+	NSRect standCounterFrame;
 }
 
 @property (assign) IBOutlet NSWindow *mainWindow;
 
 @property (assign) IBOutlet NSWindow *standupWindow;
 @property (assign) IBOutlet NSButton *standingButton;
+@property (assign) IBOutlet NSTextField *standingLabel;
+@property (assign) IBOutlet NSButton *cancelButton;
+@property (assign) IBOutlet NSTextField *standCounterLabel;
 
 @property (retain) Countdown *sitcounter;
 @property (retain) Countdown *standcounter;

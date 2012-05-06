@@ -29,13 +29,25 @@
 - (void)doStandup:(id)sender
 {
 	[standcounter reset];
+	[standingLabel setHidden:NO];
+	[standingButton setHidden:NO];
+	[cancelButton setHidden:NO];
 	[standingButton setEnabled:YES];
+	[standCounterLabel setHidden:YES];
+	[standupWindow setFrame:NSMakeRect(0, 0, 480, 270) display:NO];
+	[standupWindow center];
 	[standupWindow orderFrontRegardless];
 }
 
 - (IBAction)startStandup:(id)sender
 {
 	[standingButton setEnabled:NO];
+	[standingLabel setHidden:YES];
+	[standingButton setHidden:YES];
+	[cancelButton setHidden:YES];
+	[standCounterLabel setHidden:NO];
+	[standupWindow setFrame:NSMakeRect(0, 0, 120, 60) display:YES animate:YES];
+	//[standCounterLabel setFrameOrigin:NSMakePoint(50, 50)];
 	[standcounter reset];
 	standcounter.counting = YES;
 }
@@ -51,8 +63,11 @@
 {
 	[standupWindow setLevel:NSFloatingWindowLevel];
 	
-	sitcounter.length = 30 * 60;
+	sitcounter.length = 29 * 60;
 	standcounter.length = 60;
+	
+	standCounterFrame = [standCounterLabel frame];
+	[standCounterLabel removeConstraints:[standCounterLabel constraints]];
 	
 	[sitcounter reset];
 	sitcounter.counting = YES;
@@ -62,6 +77,9 @@
 
 @synthesize standupWindow;
 @synthesize standingButton;
+@synthesize standingLabel;
+@synthesize cancelButton;
+@synthesize standCounterLabel;
 
 @synthesize sitcounter;
 @synthesize standcounter;
