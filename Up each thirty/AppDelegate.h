@@ -20,6 +20,8 @@
 	NSRect standCounterFrame;
 }
 
+@property (assign) int debug;
+
 @property (assign) IBOutlet NSWindow *mainWindow;
 
 @property (assign) IBOutlet NSWindow *standupWindow;

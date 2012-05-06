@@ -54,17 +54,33 @@
 
 - (IBAction)doneStandup:(id)sender
 {
+	NSLog(@"done standup: %@", sender);
 	[standupWindow close];
 	[sitcounter reset];
 	sitcounter.counting = YES;
 }
 
+- (void)appDidDeactivate:(NSNotification *)sender
+{
+	NSRunningApplication *app = [[sender userInfo] valueForKey:NSWorkspaceApplicationKey];
+	
+	if ([app.bundleIdentifier isEqualToString:@"com.apple.ScreenSaver.Engine"])
+		[self doneStandup:sender];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+	self.debug = atoi(getenv("UET_DEBUG") ?: "0");
+	
 	[standupWindow setLevel:NSFloatingWindowLevel];
 	
-	sitcounter.length = 29 * 60;
-	standcounter.length = 60;
+	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(doneStandup:) name:NSWorkspaceSessionDidBecomeActiveNotification object:nil];
+	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(doneStandup:) name:NSWorkspaceDidWakeNotification object:nil];
+	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(doneStandup:) name:NSWorkspaceScreensDidWakeNotification object:nil];
+	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(appDidDeactivate:) name:NSWorkspaceDidDeactivateApplicationNotification object:nil];
+	
+	sitcounter.length = self.debug >= 1 ? 4 : 29 * 60;
+	standcounter.length = self.debug >= 1 ? 4 : 60;
 	
 	standCounterFrame = [standCounterLabel frame];
 	[standCounterLabel removeConstraints:[standCounterLabel constraints]];
@@ -72,6 +88,8 @@
 	[sitcounter reset];
 	sitcounter.counting = YES;
 }
+
+@synthesize debug;
 
 @synthesize mainWindow;
 
