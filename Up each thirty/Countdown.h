@@ -19,7 +19,9 @@
 @property (assign) NSTimeInterval length;
 @property (assign) BOOL counting;
 @property (retain) NSDate *nextFire;
+
 @property (retain) NSString *timeLeft;
+@property (assign) int percent;
 
 @property (assign) NSTimeInterval updateInterval;
 

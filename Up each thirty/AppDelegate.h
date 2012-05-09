@@ -12,12 +12,7 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
-	BOOL counting;
-	NSDate *nextStandup;
-	NSTimeInterval updateInterval;
-	NSTimer *ticker;
-	
-	NSRect standCounterFrame;
+	int icon;
 }
 
 @property (assign) int debug;

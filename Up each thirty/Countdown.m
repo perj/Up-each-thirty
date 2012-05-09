@@ -20,16 +20,28 @@
 	return self;
 }
 
-- (void)updateTimeLeft
+- (void)update
 {
 	NSTimeInterval tl = [nextFire timeIntervalSinceNow];
+	int perc;
 	
 	if (tl < 0)
+	{
+		perc = 100;
 		tl = 0;
+	}
 	else
-		tl = round(tl);
+	{
+		perc = 100 - round(tl / length * 100);
+	}
 	
-	self.timeLeft = [NSString stringWithFormat:@"%02d:%02d", (int)tl / 60, (int)tl % 60];
+	NSString *tls = [NSString stringWithFormat:@"%02d:%02d", (int)round(tl) / 60, (int)round(tl) % 60];
+	if (![tls isEqualToString:timeLeft])
+		self.timeLeft = tls;
+	
+	if (perc != percent)
+		self.percent = perc;
+	
 	if (!tl)
 		[self fire];
 }
@@ -38,7 +50,7 @@
 {
 	self.counting = NO;
 	self.nextFire = [NSDate dateWithTimeIntervalSinceNow:self.length];
-	[self updateTimeLeft];
+	[self update];
 }
 
 - (void)fire
@@ -46,6 +58,7 @@
 	self.counting = NO;
 	self.nextFire = [NSDate date];
 	self.timeLeft = @"00:00";
+	self.percent = 100;
 	
 	[NSApp sendAction:action to:target from:self];
 }
@@ -54,7 +67,7 @@
 {
 	[ticker invalidate];
 	if (counting && nextFire && updateInterval > 0)
-		ticker = [NSTimer scheduledTimerWithTimeInterval:updateInterval target:self selector:@selector(updateTimeLeft) userInfo:nil repeats:YES];
+		ticker = [NSTimer scheduledTimerWithTimeInterval:updateInterval target:self selector:@selector(update) userInfo:nil repeats:YES];
 	else
 		ticker = nil;
 }
@@ -96,7 +109,9 @@
 }
 
 @synthesize length;
+
 @synthesize timeLeft;
+@synthesize percent;
 
 @synthesize target;
 @synthesize action;

@@ -9,6 +9,19 @@
 #import "AppDelegate.h"
 #import "Countdown.h"
 
+enum observee
+{
+	obSitPercent,
+	numObservees
+};
+
+@interface AppDelegate ()
+{
+	char obptrs[numObservees];
+}
+
+@end
+
 @implementation AppDelegate
 
 - (id)init
@@ -54,10 +67,38 @@
 
 - (IBAction)doneStandup:(id)sender
 {
-	NSLog(@"done standup: %@", sender);
+	if (debug >= 1)
+		NSLog(@"done standup: %@", sender);
 	[standupWindow close];
 	[sitcounter reset];
 	sitcounter.counting = YES;
+}
+
+- (void)observeSitPercent
+{
+	int ic = ((sitcounter.percent * 30 / 100) + 2) / 5 * 5;
+	
+	if (debug >= 2)
+		NSLog(@"perc %d", sitcounter.percent);
+	
+	if (ic != icon)
+	{
+		icon = ic;
+		[NSApp setApplicationIconImage:[NSImage imageNamed:[NSString stringWithFormat:@"uet%d", icon]]];
+	}
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	switch ((enum observee)((char*)context - obptrs))
+	{
+	case obSitPercent:
+		[self observeSitPercent];
+		break;
+	default:
+		/* Not for us */
+		break;
+	}
 }
 
 - (void)appDidDeactivate:(NSNotification *)sender
@@ -82,10 +123,10 @@
 	sitcounter.length = self.debug >= 1 ? 4 : 29 * 60;
 	standcounter.length = self.debug >= 1 ? 4 : 60;
 	
-	standCounterFrame = [standCounterLabel frame];
-	[standCounterLabel removeConstraints:[standCounterLabel constraints]];
-	
 	[sitcounter reset];
+	
+	[sitcounter addObserver:self forKeyPath:@"percent" options:0 context:obptrs + obSitPercent];
+	
 	sitcounter.counting = YES;
 }
 
