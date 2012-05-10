@@ -9,12 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface Countdown : NSObject
-{
-	BOOL counting;
-	NSDate *nextFire;
-	NSTimeInterval updateInterval;
-	NSTimer *ticker;
-}
 
 @property (assign) NSTimeInterval length;
 @property (assign) BOOL counting;

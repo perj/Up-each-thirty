@@ -8,6 +8,15 @@
 
 #import "Countdown.h"
 
+@interface Countdown ()
+{
+	BOOL counting;
+	NSDate *nextFire;
+	NSTimeInterval updateInterval;
+	NSTimer *ticker;
+}
+@end
+
 @implementation Countdown
 
 - (id)init

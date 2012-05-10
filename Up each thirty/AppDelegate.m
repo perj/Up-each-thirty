@@ -17,6 +17,7 @@ enum observee
 
 @interface AppDelegate ()
 {
+	int icon;
 	char obptrs[numObservees];
 }
 

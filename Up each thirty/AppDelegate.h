@@ -11,9 +11,6 @@
 @class Countdown;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
-{
-	int icon;
-}
 
 @property (assign) int debug;
 
