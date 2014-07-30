@@ -13,7 +13,6 @@
 		66A63BD71555C21600D7A669 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 66A63BD51555C21600D7A669 /* Credits.rtf */; };
 		66A63BDA1555C21600D7A669 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A63BD91555C21600D7A669 /* AppDelegate.m */; };
 		66A63BDD1555C21600D7A669 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66A63BDB1555C21600D7A669 /* MainMenu.xib */; };
-		66A63BE51555C21600D7A669 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A63BE41555C21600D7A669 /* SenTestingKit.framework */; };
 		66A63BE61555C21600D7A669 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A63BC61555C21600D7A669 /* Cocoa.framework */; };
 		66A63BEE1555C21600D7A669 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 66A63BEC1555C21600D7A669 /* InfoPlist.strings */; };
 		66A63BF11555C21600D7A669 /* Up_each_thirtyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A63BF01555C21600D7A669 /* Up_each_thirtyTests.m */; };
@@ -51,8 +50,7 @@
 		66A63BD81555C21600D7A669 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		66A63BD91555C21600D7A669 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		66A63BDC1555C21600D7A669 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		66A63BE31555C21600D7A669 /* Up each thirtyTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Up each thirtyTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		66A63BE41555C21600D7A669 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		66A63BE31555C21600D7A669 /* Up each thirtyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Up each thirtyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A63BEB1555C21600D7A669 /* Up each thirtyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Up each thirtyTests-Info.plist"; sourceTree = "<group>"; };
 		66A63BED1555C21600D7A669 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		66A63BEF1555C21600D7A669 /* Up_each_thirtyTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Up_each_thirtyTests.h; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66A63BE51555C21600D7A669 /* SenTestingKit.framework in Frameworks */,
 				66A63BE61555C21600D7A669 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,7 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				66A63BC21555C21600D7A669 /* Up each thirty.app */,
-				66A63BE31555C21600D7A669 /* Up each thirtyTests.octest */,
+				66A63BE31555C21600D7A669 /* Up each thirtyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				66A63BC61555C21600D7A669 /* Cocoa.framework */,
-				66A63BE41555C21600D7A669 /* SenTestingKit.framework */,
 				66A63BC81555C21600D7A669 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -225,8 +221,8 @@
 			);
 			name = "Up each thirtyTests";
 			productName = "Up each thirtyTests";
-			productReference = 66A63BE31555C21600D7A669 /* Up each thirtyTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 66A63BE31555C21600D7A669 /* Up each thirtyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -234,7 +230,8 @@
 		66A63BB91555C21500D7A669 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastTestingUpgradeCheck = 0510;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Per Johansson";
 			};
 			buildConfigurationList = 66A63BBC1555C21500D7A669 /* Build configuration list for PBXProject "Up each thirty" */;
@@ -368,8 +365,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -383,7 +385,9 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
@@ -395,8 +399,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -404,7 +413,9 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
@@ -414,6 +425,7 @@
 		66A63BF51555C21600D7A669 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Up each thirty/Up each thirty-Prefix.pch";
 				INFOPLIST_FILE = "Up each thirty/Up each thirty-Info.plist";
@@ -426,6 +438,7 @@
 		66A63BF61555C21600D7A669 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Up each thirty/Up each thirty-Prefix.pch";
 				INFOPLIST_FILE = "Up each thirty/Up each thirty-Info.plist";
@@ -439,13 +452,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Up each thirty.app/Contents/MacOS/Up each thirty";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Up each thirty/Up each thirty-Prefix.pch";
 				INFOPLIST_FILE = "Up each thirtyTests/Up each thirtyTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -453,13 +466,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Up each thirty.app/Contents/MacOS/Up each thirty";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Up each thirty/Up each thirty-Prefix.pch";
 				INFOPLIST_FILE = "Up each thirtyTests/Up each thirtyTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -482,6 +495,7 @@
 				66A63BF61555C21600D7A669 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		66A63BF71555C21600D7A669 /* Build configuration list for PBXNativeTarget "Up each thirtyTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +504,7 @@
 				66A63BF91555C21600D7A669 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

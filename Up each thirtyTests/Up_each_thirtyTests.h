@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Per Johansson. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface Up_each_thirtyTests : SenTestCase
+@interface Up_each_thirtyTests : XCTestCase
 
 @end
